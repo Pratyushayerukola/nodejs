@@ -1,13 +1,28 @@
+require("dotenv").config();
+//framework
 const express = require("express");
+const mongoose = require("mongoose");
 
 // Database
-const database = require("./database");
+const database = require("./database/database");
 
 // Initialization
 const booky = express();
 
 // configuration
 booky.use(express.json());
+
+// establish database connection
+
+mongoose.connect(
+    process.env.MONGO_URL,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  }      
+);
 
 /*
 Route           /
